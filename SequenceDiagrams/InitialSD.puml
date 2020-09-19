@@ -1,0 +1,34 @@
+@startuml
+title Creation of The Initial Domain Ojects and The Subsequent Objects
+actor Actor
+
+Actor->Main: main
+
+
+create "store:Store"
+Main->"store:Store":1: create
+
+
+create "catalog:ProductCatalog"
+"store:Store"->"catalog:ProductCatalog":1.1: create
+
+
+create "descriptions:Map<ProductDescription>"
+"catalog:ProductCatalog"->"descriptions:Map<ProductDescription>":1.1.1: create
+
+
+"catalog:ProductCatalog"->"catalog:ProductCatalog":1.1.2:loadProdSpecs
+
+
+create "register:Register"
+"store:Store"->"register:Register":1.2: create(catalog,store)
+
+Main->"store:Store":2: register=getRegister
+
+
+create "userInterface:UserInterface"
+Main->"userInterface:UserInterface":3: create(register)
+
+"userInterface:UserInterface"->"userInterface:UserInterface":3.1: processSale
+
+@enduml

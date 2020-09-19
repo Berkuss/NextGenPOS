@@ -1,0 +1,20 @@
+@startuml
+title Make Payment
+actor Actor
+
+Actor->":UserInterface":makePayment(cashTendered)
+
+":UserInterface"->":Register":1:makePayment(cashTendered)
+
+":Register"->"currentSale:Sale":1.1:makePayment(cashTendered)
+
+create "payment:Payment"
+"currentSale:Sale"->"payment:Payment":1.1.1:create(cashTendered)
+
+":UserInterface"->":Register":2:saveSale
+
+":Register"->"store:Store":2.1: addSale(currnetSale)
+
+"store:Store"->"completedSales:List<Sale>":2.1.1: add(currentSale)
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+title End Sale
+actor Actor
+
+Actor->":UserInterface":endSale
+
+":UserInterface"->":Register":1: endSale
+
+":Register"->"currentSale:Sale":1.1: becomeComplete
+
+
+":UserInterface"->":Register":2: summary=getSummary
+
+":Register"->"currentSale:Sale":2.1: summary = toString
+
+"currentSale:Sale"->"currentSale:Sale":2.1.1: total=getTotal
+loop
+"currentSale:Sale"->"lineItems:SaleLineItem":2.1.1.1: st=getSubTotal
+
+"lineItems:SaleLineItem"->"description:ProductDescription":2.1.1.1.1: pr=getPrice
+
+end
+"currentSale:Sale"->"tax:Tax":2.1.2: setTaxAmount(total)
+
+"currentSale:Sale"->"tax:Tax":2.1.3: tax=getTaxAmount
+
+@enduml

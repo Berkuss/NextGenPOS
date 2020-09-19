@@ -1,0 +1,15 @@
+@startuml
+title Make New Sale
+actor Actor
+
+Actor->":UserInterface":makeNewSale
+
+":UserInterface"->"register:Register":1: makeNewSale
+
+create "currentSale:Sale"
+"register:Register"->"currentSale:Sale":1.1: create
+
+create "tax:Tax"
+"currentSale:Sale"->"tax:Tax":1.1.1: create
+
+@enduml

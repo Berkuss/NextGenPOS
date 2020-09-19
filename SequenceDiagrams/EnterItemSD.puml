@@ -1,0 +1,19 @@
+@startuml
+title Enter Item
+actor Actor
+
+loop
+
+Actor->":UserInterface": enterItem(id,quantity)
+":UserInterface"->":Register":1:slString=enterItem(id,quantity)
+":Register"->":ProductCatalog":1.1: desc=getProductDescription(id)
+":ProductCatalog"->"descriptions:Map<ProductCatalog>":1.1.1: desc=get(id)
+":Register"->"currentSale:Sale":1.2: slString=makeLineItem(desc,quantity)
+create "st:SaleLineItem"
+"currentSale:Sale"->"st:SaleLineItem":1.2.1: create(desc,quantity)
+"currentSale:Sale"->"st:SaleLineItem":1.2.2: slString=toString
+"currentSale:Sale"->"lineItems:List<SaleLineItem>":1.2.3: add(st)
+
+end
+
+@enduml

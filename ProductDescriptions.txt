@@ -1,0 +1,11 @@
+1 6.5 Product1
+2 10 Product2
+3 4 Product3
+4 5 Product4
+5 2 Product5
+6 1.99 Product6
+7 15 Product7 TRY
+8 3.65 Product8
+9 7 Product9
+10 8 Product10 GBP
+11 12 Darjeelingtea
